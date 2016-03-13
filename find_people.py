@@ -50,18 +50,21 @@ def search_person(driver, company, job):
         return None
     else:
         # TODO: Return list of names in search results
-        return ''
-
-
-def no_results(driver):
-    elem = driver.find_element_by_id('empty-results-description')
+        try:
+            elems = driver.find_elements_by_xpath("//a[@class='title main-headline']")
+            return [elem.text for elem in elems]
+        except:
+            return 'fail'
+#
+# def no_results(driver):
+#     elem = driver.find_element_by_id('empty-results-description')
 
 if __name__ == '__main__':
     driver = webdriver.Chrome()
     login(driver)
     # Sleep 5 seconds
     time.sleep(5)
-    search_person(driver, 'Udacity', 'Public Relations')
+    print search_person(driver, 'Udacity', 'Software Developer')
     time.sleep(3)
     # TODO: Write results of search_person to a json file
     # (key: company, value: [name])
