@@ -55,9 +55,12 @@ def search_person(driver, company, job):
             return [elem.text for elem in elems]
         except:
             return 'fail'
-#
-# def no_results(driver):
-#     elem = driver.find_element_by_id('empty-results-description')
+
+def invalid_results(results):
+    '''
+    This method removes invalid results from a returned results option
+    '''
+    pass
 
 if __name__ == '__main__':
     driver = webdriver.Chrome()
